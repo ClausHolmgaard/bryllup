@@ -15,13 +15,17 @@ const introStyle = {
     backgroundPosition: 'center'
 };
 
+const imageStyle = {
+    maxWidth: '100%'
+}
+
 const IntroBox = () => {
     return(
         <Grid container style={introStyle} direction='row' wrap="nowrap">
             <Grid container justify='space-evenly' alignItems='center'>
                 <Grid item>
                     <Typography variant="h3">
-                        Per og Thao
+                        <center>Per og Thao</center>
                     </Typography>
                     <h3>
                         <center>D. 7. August Kl. 13:00 i Hjørring</center>
@@ -30,7 +34,7 @@ const IntroBox = () => {
                 </Grid>
                 <Grid item>
                     <Paper>
-                        <img src={sticks} />
+                        <img src={sticks} style={imageStyle}/>
                     </Paper> 
                 </Grid>
             </Grid>
