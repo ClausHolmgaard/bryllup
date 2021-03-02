@@ -34,7 +34,7 @@ const IntroBox = () => {
                 </Grid>
                 <Grid item>
                     <Paper>
-                        <img src={sticks} style={imageStyle}/>
+                        <img src={sticks} style={imageStyle}  alt=''/>
                     </Paper> 
                 </Grid>
             </Grid>
