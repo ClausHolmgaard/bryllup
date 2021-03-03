@@ -31,8 +31,8 @@ function App() {
                     <Grid item style={{height: '50vh', width: '100%'}} zeroMinWidth>
                         <StoryBox />
                     </Grid>
-                    <Grid item style={{height: '50vh', width: '100%'}} zeroMinWidth>
-                        <ImageGallery />
+                    <Grid item style={{height: '50vh', width: '100%', maxHeight: '50vh'}} zeroMinWidth>
+                            <ImageGallery />
                     </Grid>
                 </Grid>
             </ThemeProvider>
