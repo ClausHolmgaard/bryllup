@@ -4,7 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import sticks from '../images/sticks.png';
+//import sticks from '../images/sticks.png';
+import introImage from '../images/thaoper_main.jpg';
 import flowerback from '../images/flower_back.jpg';
 
 const introStyle = {
@@ -24,17 +25,17 @@ const IntroBox = () => {
         <Grid container style={introStyle} direction='row' wrap="nowrap">
             <Grid container justify='space-evenly' alignItems='center'>
                 <Grid item>
-                    <Typography variant="h3">
+                    <Typography variant="h2">
                         <center>Per & Thao</center>
                     </Typography>
-                    <h3>
+                    <Typography variant='h4'>
                         <center>D. 7. August Kl. 13:00 i Hjørring</center>
-                    </h3>
+                    </Typography>
                     
                 </Grid>
                 <Grid item>
                     <Paper>
-                        <img src={sticks} style={imageStyle}  alt=''/>
+                        <img src={introImage} style={imageStyle}  alt=''/>
                     </Paper> 
                 </Grid>
             </Grid>
