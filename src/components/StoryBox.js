@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import { Context } from '../function/Store'
+import { Typography } from '@material-ui/core';
 
 const style = {
     height: '100%',
@@ -16,44 +17,33 @@ const StoryBox = () => {
 
     var titleText = new Map();
     titleText.set('english', `
-    <center>
-        <h1>Something Something Title</h1>
-    </center>
+        Something Something Title
     `);
     titleText.set('dansk', `
-    <center>
-        <h1>Etellerandet Etellerandet Titel</h1>
-    </center>
+        Etellerandet Etellerandet Titel
     `);
 
     var subtitleText = new Map();
     subtitleText.set('english', `
-    <center>
-        <h2>Something Subtitle</h2>
-    </center>
+        Something Subtitle
     `);
     subtitleText.set('dansk', `
-    <center>
-        <h2>Etellerandet Undertitel</h2>
-    </center>
+        Etellerandet Undertitel
     `);
 
     var mainText = new Map();
-    mainText.set('english', `
-    <center>
-        Alot of text<br />
-        About alot of things<br />
-    </center>
-    `)
-    mainText.set('dansk', `
-    <center>
-        Masser af tekst<br />
-        Endnu mere masser af text<br />
-    </center>
-    `)
+    mainText.set('english', [
+        'Alot of text',
+        'About alot of things'
+    ])
+    mainText.set('dansk', [
+        'Masser af tekst',
+        'Endnu mere masser af text'
+    ])
 
     return (
         <Grid container style={style} direction='column' alignItems='center' justify='center'>
+            {/*
             <Grid item>
                 <div dangerouslySetInnerHTML={{__html: titleText.get(getLanguage)}} />
             </Grid>
@@ -63,7 +53,26 @@ const StoryBox = () => {
             <Grid item>
                 <div dangerouslySetInnerHTML={{__html: mainText.get(getLanguage)}} />
             </Grid>
-            
+            */}
+
+            {/* Assuming same layout for all languages */}
+            <Grid item>
+                <Typography variant='h4'>
+                    {titleText.get(getLanguage)}
+                </Typography>
+            </Grid>
+            <Grid item>
+                <Typography variant='subtitle1'>
+                    {subtitleText.get(getLanguage)}
+                </Typography>
+            </Grid>
+            <Grid item>
+                <Typography variant='body2'>
+                    {mainText.get(getLanguage).map(t => <center>{t}</center>)}
+                </Typography>
+            </Grid>
+
+
         </Grid>
     )
 }

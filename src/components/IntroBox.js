@@ -25,7 +25,7 @@ const IntroBox = () => {
             <Grid container justify='space-evenly' alignItems='center'>
                 <Grid item>
                     <Typography variant="h3">
-                        <center>Per og Thao</center>
+                        <center>Per & Thao</center>
                     </Typography>
                     <h3>
                         <center>D. 7. August Kl. 13:00 i Hjørring</center>
