@@ -7,7 +7,8 @@ import StoreProvider from './function/Store';
 import IntroBox from './components/IntroBox';
 import StoryBox from './components/StoryBox';
 import NavBar from './components/NavBar';
-import ImageGallery from './components/ImageGalley';
+import ImageGallery from './components/ImageGallery';
+import MapBox from './components/MapBox';
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -31,8 +32,11 @@ function App() {
                     <Grid item style={{height: '50vh', width: '100%'}} zeroMinWidth>
                         <StoryBox />
                     </Grid>
-                    <Grid item style={{height: '50vh', width: '100%', maxHeight: '50vh'}} zeroMinWidth>
-                            <ImageGallery />
+                    <Grid item style={{width: '100%', maxHeight: '50vh'}} zeroMinWidth>
+                        <ImageGallery />
+                    </Grid>
+                    <Grid item style={{width: '100%', maxHeight: '50vh'}} zeroMinWidth>
+                        <MapBox />
                     </Grid>
                 </Grid>
             </ThemeProvider>

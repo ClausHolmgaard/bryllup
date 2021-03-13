@@ -58,21 +58,23 @@ const StoryBox = () => {
             {/* Assuming same layout for all languages */}
             <Grid item>
                 <Typography variant='h4'>
-                    {titleText.get(getLanguage)}
+                    <center>
+                        {titleText.get(getLanguage)}
+                    </center>
                 </Typography>
             </Grid>
             <Grid item>
                 <Typography variant='subtitle1'>
-                    {subtitleText.get(getLanguage)}
+                    <center>
+                        {subtitleText.get(getLanguage)}
+                    </center>
                 </Typography>
             </Grid>
             <Grid item>
-                <Typography variant='body2'>
-                    {mainText.get(getLanguage).map(t => <center>{t}</center>)}
-                </Typography>
+                <center>
+                    {mainText.get(getLanguage).map((t, i) => <Typography variant='body2' key={i}>{t}</Typography>)}
+                </center>
             </Grid>
-
-
         </Grid>
     )
 }
