@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import { Context } from '../function/Store';
 import { Typography } from '@material-ui/core';
 
-const mapUrl = 'http://127.0.0.1:5000/map';
-//const mapUrl = 'https://bryllup-test.herokuapp.com/map'
+//const mapUrl = 'http://127.0.0.1:5000/map';
+const mapUrl = 'https://bryllup-test.herokuapp.com/map'
 
 const MapBox = () => {
     const targetRef = useRef();
@@ -35,8 +35,8 @@ const MapBox = () => {
 
     return (
 
-        <Grid container style={{height: '50vh', width: '100%'}} direction='row' alignItems='center' justify='center'>
-            <Grid container item style={{width: '40%', height: '100%'}} direction='column' alignItems='center' justify='center'>
+        <Grid container style={{height: '100%'}} xs={12} alignItems='center' justify='center'>
+            <Grid container item xs={12} sm={6} direction='column' alignItems='center' justify='center'>
                 <Grid item>
                     <Typography variant='h4'>
                         <center>
@@ -51,8 +51,11 @@ const MapBox = () => {
                         </center>
                     </Typography>
                 </Grid>
+                <Grid item>
+                    <br />
+                </Grid>
             </Grid>
-            <Grid item style={{width: '40%', height: '100%'}} ref={targetRef}>
+            <Grid item style={{height: '100%'}} xs={12} sm={6} ref={targetRef}>
                 <iframe title='map' style={{height: '100%', width: '100%', border: '0px'}} src={getMapWithSize()}>IFrame troubles!</iframe>
             </Grid>
         </Grid>

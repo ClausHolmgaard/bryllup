@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import { Context } from '../function/Store'
+import { Context } from '../function/Store';
 import { Typography } from '@material-ui/core';
 
 const style = {
@@ -11,7 +11,6 @@ const style = {
 };
 
 const StoryBox = () => {
-
     const { language } = useContext(Context)
     const [getLanguage, ,] = language;
 
@@ -43,18 +42,6 @@ const StoryBox = () => {
 
     return (
         <Grid container style={style} direction='column' alignItems='center' justify='center'>
-            {/*
-            <Grid item>
-                <div dangerouslySetInnerHTML={{__html: titleText.get(getLanguage)}} />
-            </Grid>
-            <Grid item>
-                <div dangerouslySetInnerHTML={{__html: subtitleText.get(getLanguage)}} />
-            </Grid>
-            <Grid item>
-                <div dangerouslySetInnerHTML={{__html: mainText.get(getLanguage)}} />
-            </Grid>
-            */}
-
             {/* Assuming same layout for all languages */}
             <Grid item>
                 <Typography variant='h4'>
