@@ -36,10 +36,23 @@ const MapBox = () => {
     return (
 
         <Grid container style={{height: '50vh', width: '100%'}} direction='row' alignItems='center' justify='center'>
-            <Grid item style={{width: '50%', height: '100%'}}>
-                info
+            <Grid container item style={{width: '40%', height: '100%'}} direction='column' alignItems='center' justify='center'>
+                <Grid item>
+                    <Typography variant='h4'>
+                        <center>
+                            Adresse linje 1
+                        </center>
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography variant='subtitle1'>
+                        <center>
+                            Mere adresse værk
+                        </center>
+                    </Typography>
+                </Grid>
             </Grid>
-            <Grid item style={{width: '50%', height: '100%'}} ref={targetRef}>
+            <Grid item style={{width: '40%', height: '100%'}} ref={targetRef}>
                 <iframe title='map' style={{height: '100%', width: '100%', border: '0px'}} src={getMapWithSize()}>IFrame troubles!</iframe>
             </Grid>
         </Grid>
