@@ -24,7 +24,7 @@ const imageStyle = {
 const IntroBox = () => {
     return(
         <Grid container item style={{height: '100%'}} direction='row'>
-            <Grid container item xs={6} direction='column'>
+            <Grid container item xs={12} sm={6} direction='column'>
                 <Grid item>
                     <img src={backgroundImage} style={{maxWidth: '50vw'}} alt=''/>
                 </Grid>
@@ -37,7 +37,7 @@ const IntroBox = () => {
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid container item xs={6} alignItems='center'>
+            <Grid container item xs={12} sm={6} alignItems='center'>
                 <Paper style={imageStyle}>
                     <img src={introImage} style={imageStyle}  alt=''/>
                 </Paper>

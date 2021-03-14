@@ -45,9 +45,9 @@ const Wishlist = () => {
             return getWishlist();
         } else {
             return (
-            <div style={{width: '100%', background: 'linear-gradient(#ffffff, #8a8a8a)'}}>
+            <div style={{width: '100%'}}>
                 <center>
-                    {/*<ExpandMoreSharpIcon />*/}
+                    {'Tryk for mere!'}
                 </center>     
             </div>
             )
@@ -63,24 +63,15 @@ const Wishlist = () => {
     }
 
     return (
-        <Grid container onClick={handleClick} style={{paddingBottom: '50px', paddingTop: '50px'}} direction='column' alignItems='center' justify='center'>
+        <Grid container onClick={handleClick} style={{paddingBottom: '20px', paddingTop: '10px'}} direction='column' alignItems='center' justify='center'>
             <Grid container item xs={12} style={getStyle()} direction='column' alignItems='center' justify='center'>
                 <Grid item>
-                    <Typography variant='h4'>
+                    <Typography variant='h2'>
                         <center>
                             Ønskeliste
                         </center>
                     </Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant='subtitle1'>
-                        <center>
-                            Tryk for mere!
-                        </center>
-                    </Typography>
-                </Grid>
-                
-                
+                </Grid>                
             </Grid>
             <Grid item xs={12}>
                 {getBottom()}
