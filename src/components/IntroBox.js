@@ -6,14 +6,15 @@ import Typography from '@material-ui/core/Typography';
 
 //import sticks from '../images/sticks.png';
 import introImage from '../images/thaoper_main.jpg';
-import backgroundImage from '../images/flower_corner.png';
+//import backgroundImage from '../images/flower_corner.png';
+import topLeftFlower from '../images/flower_left_top.jpg';
 
 const introStyle = {
     height: '100%',
     width: '100%',
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    //backgroundImage: `url(${backgroundImage})`,
+    //backgroundSize: 'cover',
+    //backgroundPosition: 'center'
 };
 
 const imageStyle = {
@@ -26,7 +27,7 @@ const IntroBox = () => {
         <Grid container item style={{height: '100%'}} direction='row'>
             <Grid container item xs={12} sm={6} direction='column'>
                 <Grid item>
-                    <img src={backgroundImage} style={{maxWidth: '50vw'}} alt=''/>
+                    <img src={topLeftFlower} style={{maxWidth: '50vw', maxHeight: '50vh'}} alt=''/>
                 </Grid>
                 <Grid item >
                     <Typography variant="h2">
