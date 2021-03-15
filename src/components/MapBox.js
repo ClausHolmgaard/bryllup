@@ -35,7 +35,7 @@ const MapBox = () => {
 
     return (
 
-        <Grid container style={{height: '100%'}} xs={12} alignItems='center' justify='center'>
+        <Grid container style={{height: '100%'}} alignItems='center' justify='center'>
             <Grid container item xs={12} sm={6} direction='column' alignItems='center' justify='center'>
                 <Grid item>
                     <Typography variant='h4'>

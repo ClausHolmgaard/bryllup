@@ -27,7 +27,7 @@ function App() {
             <ThemeProvider theme={theme}>
                 <NavBar />
                 <Grid container item xs={12} spacing={0} direction='column' justify='flex-start'>
-                    <Grid item style={{height: '100vh'}} xs={12}>
+                    <Grid item xs={12}>
                         <IntroBox />
                     </Grid>
                     <Grid item style={{height: '50vh'}} xs={12} zeroMinWidth>

@@ -13,9 +13,19 @@ listOfWishes.set('english', [
     'Wish2',
     'wish3',
     'wish4',
+    'wish5',
+    'Wish1',
+    'Wish2',
+    'wish3',
+    'wish4',
     'wish5'
 ])
 listOfWishes.set('dansk', [
+    'Ønske1',
+    'Ønske2',
+    'Ønske3',
+    'Ønske4',
+    'Ønske5',
     'Ønske1',
     'Ønske2',
     'Ønske3',
@@ -34,10 +44,18 @@ const Wishlist = () => {
 
     const getStyle = () => {
         const style = {
-            height: fullHeight ? '100%' : '50vh'
+            backgroundColor: '#e1f1fc',
+            minHeight: '30vh',
+            height: fullHeight ? '100%' : '30vh'
         }
-        console.log(`Getting style: ${style}`);
+        //console.log(`Getting style: ${style}`);
         return style;
+    }
+
+    const getJustify = () => {
+        const jus = fullHeight ? 'center' : 'flex-start';
+        console.log(`setting justify: ${jus}`);
+        return jus;
     }
 
     const getBottom = () => {
@@ -63,20 +81,24 @@ const Wishlist = () => {
     }
 
     return (
-        <Grid container onClick={handleClick} style={{paddingBottom: '20px', paddingTop: '10px'}} direction='column' alignItems='center' justify='center'>
-            <Grid container item xs={12} style={getStyle()} direction='column' alignItems='center' justify='center'>
-                <Grid item>
+            <Grid container item
+                  onClick={handleClick}
+                  xs={12}
+                  style={getStyle()}
+                  direction='column'
+                  alignItems='center'
+                  justify={getJustify()}>
+                <Grid>
                     <Typography variant='h2'>
                         <center>
                             Ønskeliste
                         </center>
                     </Typography>
-                </Grid>                
+                </Grid>
+                <Grid>
+                    {getBottom()}
+                </Grid>            
             </Grid>
-            <Grid item xs={12}>
-                {getBottom()}
-            </Grid>
-        </Grid>
     )
 }
 
