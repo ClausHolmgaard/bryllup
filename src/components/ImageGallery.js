@@ -20,8 +20,13 @@ const ImageGallery = ({imageUrl}) => {
     }, [])
 
     const getImages = () => {
-        console.log('Getting image list');
-        fetch(`${imageUrl}`)
+        console.log(`Getting image list from: ${imageUrl}`);
+        fetch(`${imageUrl}`, {
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            }
+        },)
             .then(data => data.json())
             .then(json => setAndGroupImageUrls(json))
             .catch(err => console.log(`Error getting image list ${err}`))

@@ -13,14 +13,9 @@ import Wishlist from './components/Wishlist';
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-//const mailUrl = 'http://localhost:5000/mail';
-const mailUrl = 'https://bryllup-test.herokuapp.com/mail'
-
-//const imageUrl = 'http://127.0.0.1:5000/images';
-const imageUrl = 'https://bryllup-test.herokuapp.com/images'
-
-//const mapUrl = 'http://127.0.0.1:5000/map';
-const mapUrl = 'https://bryllup-test.herokuapp.com/map'
+const imageUrl = process.env.REACT_APP_IMAGE_URL;
+const mapUrl = process.env.REACT_APP_MAP_URL;
+const mailUrl = process.env.REACT_APP_MAIL_URL;
 
 const theme = createMuiTheme({
   typography: {
@@ -31,6 +26,12 @@ const theme = createMuiTheme({
   },});
 
 function App() {
+
+    const getImageUrl = () => {
+        console.log(`imageUrl: ${imageUrl}`);
+        return imageUrl;
+    }
+
     return (
         <StoreProvider>
             <ThemeProvider theme={theme}>
@@ -43,7 +44,7 @@ function App() {
                         <StoryBox />
                     </Grid>
                     <Grid item style={{maxHeight: '50vh'}} xs={12} zeroMinWidth>
-                        <ImageGallery imageUrl={imageUrl} />
+                        <ImageGallery imageUrl={getImageUrl()} />
                     </Grid>
                     <Grid item xs={12}>
                         <Wishlist />
