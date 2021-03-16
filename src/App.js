@@ -10,6 +10,8 @@ import NavBar from './components/NavBar';
 import ImageGallery from './components/ImageGallery';
 import MapBox from './components/MapBox';
 import Wishlist from './components/Wishlist';
+import WelcomeBox from './components/WelcomeBox';
+import PlanBox from './components/PlanBox';
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -36,12 +38,15 @@ function App() {
         <StoreProvider>
             <ThemeProvider theme={theme}>
                 <NavBar />
-                <Grid container item xs={12} spacing={0} direction='column' justify='flex-start'>
+                <Grid container item xs={12} direction='column' justify='flex-start'>
                     <Grid item xs={12}>
                         <IntroBox mailUrl={mailUrl} />
                     </Grid>
-                    <Grid item style={{height: '50vh'}} xs={12} zeroMinWidth>
-                        <StoryBox />
+                    <Grid item xs={12} zeroMinWidth>
+                        <WelcomeBox />
+                    </Grid>
+                    <Grid container item xs={12}>
+                        <PlanBox />
                     </Grid>
                     <Grid item style={{maxHeight: '50vh'}} xs={12} zeroMinWidth>
                         <ImageGallery imageUrl={getImageUrl()} />

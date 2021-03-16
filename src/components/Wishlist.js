@@ -2,10 +2,10 @@ import React, {useContext, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ExpandMoreSharpIcon from '@material-ui/icons/ExpandMoreSharp';
+import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
-import { Typography } from '@material-ui/core';
+import {titleText, contactText, moreText} from '../Text/WishlistText';
 
 const listOfWishes = new Map();
 listOfWishes.set('english', [
@@ -45,10 +45,10 @@ const Wishlist = () => {
     const getStyle = () => {
         const style = {
             backgroundColor: '#e1f1fc',
-            minHeight: '30vh',
-            height: fullHeight ? '100%' : '30vh'
+            //minHeight: '30vh',
+            //height: fullHeight ? '100%' : '100%'
+            height: '100%'
         }
-        //console.log(`Getting style: ${style}`);
         return style;
     }
 
@@ -65,8 +65,14 @@ const Wishlist = () => {
             return (
             <div style={{width: '100%'}}>
                 <center>
-                    {'Tryk for mere!'}
+                     {contactText.get(getLanguage)}
+                </center>
+                <br />
+                <br />
+                <center>
+                    <b>{moreText.get(getLanguage)}</b>
                 </center>     
+                <br />
             </div>
             )
         }
@@ -91,7 +97,7 @@ const Wishlist = () => {
                 <Grid>
                     <Typography variant='h2'>
                         <center>
-                            Ønskeliste
+                            {titleText.get(getLanguage)}
                         </center>
                     </Typography>
                 </Grid>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -6,17 +6,15 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-//import sticks from '../images/sticks.png';
+import { Context } from '../function/Store';
+import { helloText } from '../Text/IntroText';
+
 import introImage from '../images/thaoper_main.jpg';
-//import backgroundImage from '../images/flower_corner.png';
 import topLeftFlower from '../images/flower_left_top.jpg';
 
 const introStyle = {
     height: '100%',
     width: '100%',
-    //backgroundImage: `url(${backgroundImage})`,
-    //backgroundSize: 'cover',
-    //backgroundPosition: 'center'
 };
 
 const imageStyle = {
@@ -25,7 +23,8 @@ const imageStyle = {
 }
 
 const IntroBox = ({mailUrl}) => {
-
+    const { language } = useContext(Context)
+    const [getLanguage, ,] = language;
     const [sendStatus, setSendStatus] = useState(0);
     const [showRsvp, setShowRsvp] = useState(false);
     const [nameError, setNameError] = useState(false);
@@ -223,6 +222,9 @@ const IntroBox = ({mailUrl}) => {
                 <Grid container item direction='column' alignItems='center' justify='center'>
                     <Grid>
                         <Typography variant="h2">
+                            <center>{helloText.get(getLanguage)}</center>
+                        </Typography>
+                        <Typography variant="h3">
                             <center>Per & Thao</center>
                         </Typography>
                         <Typography variant='h4'>

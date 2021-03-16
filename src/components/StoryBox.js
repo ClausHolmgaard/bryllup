@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
-import { Typography } from '@material-ui/core';
+import { titleText, subtitleText, mainText } from '../Text/StoryText';
 
 const style = {
     height: '100%',
@@ -13,32 +14,6 @@ const style = {
 const StoryBox = () => {
     const { language } = useContext(Context)
     const [getLanguage, ,] = language;
-
-    var titleText = new Map();
-    titleText.set('english', `
-        Something Something Title
-    `);
-    titleText.set('dansk', `
-        Etellerandet Etellerandet Titel
-    `);
-
-    var subtitleText = new Map();
-    subtitleText.set('english', `
-        Something Subtitle
-    `);
-    subtitleText.set('dansk', `
-        Etellerandet Undertitel
-    `);
-
-    var mainText = new Map();
-    mainText.set('english', [
-        'Alot of text',
-        'About alot of things'
-    ])
-    mainText.set('dansk', [
-        'Masser af tekst',
-        'Endnu mere masser af text'
-    ])
 
     return (
         <Grid container style={style} direction='column' alignItems='center' justify='center'>
