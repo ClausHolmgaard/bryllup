@@ -4,10 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { Context } from '../function/Store';
 import { Typography } from '@material-ui/core';
 
-//const mapUrl = 'http://127.0.0.1:5000/map';
-const mapUrl = 'https://bryllup-test.herokuapp.com/map'
-
-const MapBox = () => {
+const MapBox = ({mapUrl}) => {
     const targetRef = useRef();
     const [dimensions, setDimensions] = useState({ width:0, height: 0 });
 

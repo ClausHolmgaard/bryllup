@@ -11,9 +11,6 @@ import introImage from '../images/thaoper_main.jpg';
 //import backgroundImage from '../images/flower_corner.png';
 import topLeftFlower from '../images/flower_left_top.jpg';
 
-const mailUrl = 'http://localhost:5000/mail';
-//const mailUrl = 'https://bryllup-test.herokuapp.com/mail'
-
 const introStyle = {
     height: '100%',
     width: '100%',
@@ -27,7 +24,8 @@ const imageStyle = {
     maxHeight: '85vh'
 }
 
-const IntroBox = () => {
+const IntroBox = ({mailUrl}) => {
+
     const [sendStatus, setSendStatus] = useState(0);
     const [showRsvp, setShowRsvp] = useState(false);
     const [nameError, setNameError] = useState(false);
@@ -206,7 +204,7 @@ const IntroBox = () => {
             )
         } else {
             return (
-                <Grid item>
+                <Grid item style={{paddingBottom: 5, paddingTop: 5}}>
                     <Button variant="contained" color="primary" onClick={() => {setShowRsvp(true)}}>
                         RSVP
                     </Button>

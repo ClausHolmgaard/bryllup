@@ -3,9 +3,6 @@ import Carousel from 'react-material-ui-carousel';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
-//const imageUrl = 'http://127.0.0.1:5000/images';
-const imageUrl = 'https://bryllup-test.herokuapp.com/images'
-
 const IMAGES_PER_PAGE = 4;
 
 const carouselStyle = {
@@ -14,7 +11,7 @@ const carouselStyle = {
     //maxHeight: '100%',
 };
 
-const ImageGallery = () => {
+const ImageGallery = ({imageUrl}) => {
     const [imageGroups, setImageGroups] = useState([]);
 
     useEffect(() => {
