@@ -20,7 +20,7 @@ const WelcomeBox = () => {
     const [getLanguage, ,] = language;
 
     return (
-        <Grid container style={imageBackgroundStyle} direction='column' alignItems='center' justify='center'>
+        <Grid container direction='column' alignItems='center' justify='center'>
             
             <Grid container item xs={12} direction='column' alignItems='center' justify='center'>
                 <Grid item>

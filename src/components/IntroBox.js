@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { useMediaQuery } from "@material-ui/core";
 
 import { Context } from '../function/Store';
 import { helloText } from '../Text/IntroText';
@@ -39,9 +40,13 @@ const IntroBox = ({mailUrl}) => {
         commentText: ''
       });
 
+    const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down("xs"));
+
     const getMainStyle = () => {
         return({
-            height: showRsvp ? '100%' : '100vh'
+            minHeight: '100vh',
+            height: '100%'
+            //height: showRsvp ? '100%' : '100vh'
         })
     }
 
@@ -212,36 +217,81 @@ const IntroBox = ({mailUrl}) => {
         }
     }
 
-    return(
-        <Grid container item style={getMainStyle()} direction='row'>
-            <Grid container item xs={12} sm={6} direction='column'>
-                <Grid item>
-                    <img src={topLeftFlower} style={{maxWidth: '50vw', maxHeight: '50vh'}} alt=''/>
-                </Grid>
+    const getPictureAndText = () => {
+        
+        if(isSmallScreen) {
+            return (
+                <Grid container item style={getMainStyle()} direction='row'>
+                    <Grid container item xs={12} direction='column'>
+                        <Grid item>
+                            <img src={topLeftFlower} style={{maxWidth: '50vw', maxHeight: '12vh'}} alt=''/>
+                        </Grid>
 
-                <Grid container item direction='column' alignItems='center' justify='center'>
-                    <Grid>
-                        <Typography variant="h2">
-                            <center>{helloText.get(getLanguage)}</center>
-                        </Typography>
-                        <Typography variant="h3">
-                            <center>Per & Thao</center>
-                        </Typography>
-                        <Typography variant='h4'>
-                            <center>D. 7. August Kl. 13:00 i Hjørring</center>
-                        </Typography>
+                        <Grid container item direction='column' alignItems='center' justify='center'>
+
+                            <Typography variant="h3">
+                                <center>{helloText.get(getLanguage)}</center>
+                            </Typography>
+                            <Typography variant="h4">
+                                <center>Per & Thao</center>
+                            </Typography>
+                            
+                     
+                            <Paper style={imageStyle} elevation={0}>
+                                <img src={introImage} style={imageStyle}  alt=''/>
+                            </Paper>
+                            <Typography variant='h4'>
+                                <center>D. 7. August Kl. 13:00 i Hjørring</center>
+                            </Typography>
+                            <Grid item>
+                                {getRSVP()}
+                            </Grid>
+                            
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        {getRSVP()}
+
+                </Grid>
+            )
+        } else {
+            return (
+                <Grid container item style={getMainStyle()} direction='row'>
+                    <Grid container item xs={12} sm={6} direction='column'>
+                        <Grid item>
+                            <img src={topLeftFlower} style={{maxWidth: '50vw', maxHeight: '50vh'}} alt=''/>
+                        </Grid>
+
+                        <Grid container item direction='column' alignItems='center' justify='center'>
+                            <Grid>
+                                <Typography variant="h2">
+                                    <center>{helloText.get(getLanguage)}</center>
+                                </Typography>
+                                <Typography variant="h3">
+                                    <center>Per & Thao</center>
+                                </Typography>
+                                <Typography variant='h4'>
+                                    <center>D. 7. August Kl. 13:00 i Hjørring</center>
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                {getRSVP()}
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid container item xs={12} sm={6} alignItems='center'>
+                        <Paper style={imageStyle}>
+                            <img src={introImage} style={imageStyle}  alt=''/>
+                        </Paper>
                     </Grid>
                 </Grid>
-            </Grid>
-            <Grid container item xs={12} sm={6} alignItems='center'>
-                <Paper style={imageStyle}>
-                    <img src={introImage} style={imageStyle}  alt=''/>
-                </Paper>
-            </Grid>
-        </Grid>
+            )
+        }
+    }
+
+    return(
+        <div>
+            {getPictureAndText()}
+        </div>
+        
     )
 }
 

@@ -22,19 +22,17 @@ const PlanBox = () => {
 
     const timeEntry = (time) => {
         return (
-            <Grid item xs={6}>
-                <Typography variant='body1'>
-                    <center>
-                        {time}
-                    </center>
-                </Typography>
+            <Grid item xs={2} sm={6}>
+                <center>
+                    {time}
+                </center>
             </Grid>
         )
     }
 
     const textEntry = (title, text) => {
         return (
-            <Grid item xs={6}>
+            <Grid item xs={10} sm={6}>
                 <Typography variant='body1'>
                     <b>{title}</b>
                 </Typography>
