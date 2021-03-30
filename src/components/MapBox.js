@@ -1,9 +1,13 @@
 import React, {useContext, useState, useLayoutEffect, useRef} from 'react';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
 import { churchText, partyText } from '../Text/MapText';
+
+import GreenMapPin from '../images/GreenMapPin.png';
+import BlueMapPin from '../images/BlueMapPin.png';
 
 const MapBox = ({mapUrl}) => {
     const { language } = useContext(Context)
@@ -13,7 +17,7 @@ const MapBox = ({mapUrl}) => {
 
     const updateMapSize = () => {
         if (targetRef.current) {
-            console.log(`height: ${targetRef.current.offsetWidth}, width: ${targetRef.current.offsetHeight}`)
+            //console.log(`height: ${targetRef.current.offsetWidth}, width: ${targetRef.current.offsetHeight}`)
             setDimensions({
                 width: targetRef.current.offsetWidth,
                 height: targetRef.current.offsetHeight
@@ -29,60 +33,139 @@ const MapBox = ({mapUrl}) => {
 
     const getMapWithSize = () => {
         const sizeUrl = `${mapUrl}?height=${dimensions.height}&width=${dimensions.width}`;
-        console.log(sizeUrl);
+        //console.log(sizeUrl);
         return sizeUrl;
     }
 
-    return (
+    const getTitleWithImage = (title, image) => {
+        return (
+            <Grid container item direction='row'>
+                <Grid item>
+                    <Typography variant='h5'>
+                        {title}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <img src={image} style={{maxHeight: '1em', maxWidth:'100%'}} alt=''/>
+                </Grid>
+            </Grid>
+        )
+    }
 
-        <Grid container style={{height: '100%'}} alignItems='center' justify='center'>
-            <Grid container item xs={12} sm={6} direction='row' alignItems='center' justify='center'>
-                <Grid item xs={4}></Grid>
+    const getLocationText = () => {
+        return (
+            <Grid container item xs={12} sm={4} justify='center' direction='column'>
+                <Grid container item direction='column'>
+                    {getTitleWithImage(churchText.get(getLanguage), BlueMapPin)}
+                    <Typography variant='subtitle1'>
+                        Sankt Maria, martyrernes Dronning
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        Bispensgade 67
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        9800 Hjørring
+                    </Typography>
+                </Grid>
 
-                <Grid container item xs={4} direction='column'>
-                    <Grid item>
-                        <Typography variant='h5'>
-                            {churchText.get(getLanguage)}
-                        </Typography>
-                        <Typography variant='subtitle1'>
-                            Sankt Maria, martyrernes Dronning
-                        </Typography>
-                        <Typography variant='subtitle1'>
-                            Bispensgade 67
-                        </Typography>
-                        <Typography variant='subtitle1'>
-                            9800 Hjørring
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <br />
-                    </Grid>
-                    <Grid item>
-                        <Typography variant='h5'>
-                            {partyText.get(getLanguage)}
-                        </Typography>
-                        <Typography variant='subtitle1'>
-                            Vendelbohus
-                        </Typography>
-                        <Typography variant='subtitle1'>
-                            Nørregade 22
-                        </Typography>
-                        <Typography variant='subtitle1'>
-                            9800 Hjørring
-                        </Typography>
-                    </Grid>
+                <Grid item>
+                    <br />
                 </Grid>
                 
+                <Grid item>
+                    {getTitleWithImage(partyText.get(getLanguage), GreenMapPin)}
+                    <Typography variant='subtitle1'>
+                        Vendelbohus
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        Nørregade 22
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        9800 Hjørring
+                    </Typography>
+                </Grid>
 
-                <Grid item xs={4}></Grid>
+                <Grid item>
+                    <br />
+                </Grid>
+
+                <Grid container item direction='column'>
+                    <Grid item>
+                        <Typography variant='h6'>
+                            Parkering til fest
+                        </Typography>
+                    </Grid>
+                    <Grid container item direction='row'>
+                        <Grid item>
+                            <Typography variant='subtitle1'>
+                                Kirkepladsen, p. Plads
+                            </Typography>
+                            <Typography variant='subtitle1'>
+                                9800 Hjørring
+                            </Typography>
+                        </Grid>
+                        <Box pl={7}>
+                            <Grid item>
+                                <Typography variant='subtitle1'>
+                                    Sct. Olai Plads
+                                </Typography>
+                                <Typography variant='subtitle1'>
+                                    9800 Hjørring
+                                </Typography>
+                            </Grid>
+                        </Box>
+                    </Grid>
+                </Grid>
+
+                <Grid item>
+                    <br />
+                </Grid>
+
+                <Grid item>
+                    <Typography variant='h5'>
+                        Overnatning
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        <a href='https://phoenix-hjoerring.dk/'>Hotel Phønix Hjørring</a>
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        Jernbanegade 6
+                    </Typography>
+                    <Typography variant='subtitle1'>
+                        9800 Hjørring
+                    </Typography>
+                </Grid>
+
+            </Grid>
+        )
+    }
+
+    return (
+        <Grid container direction='column' alignItems='stretch'>
+            <Box pb={3}>
+                <Grid item xs={12}>
+                    <Typography variant='h3'>
+                        <center>
+                            Lokationer
+                        </center>
+                    </Typography>
+                </Grid>
+            </Box>
+            <Grid container item xs={12} direction='row' alignItems='stretch' justify='center'>
+                
+                <Grid item sm={2}>
+
+                </Grid>
+
+                {getLocationText()}
+                
+
+                <Grid container item xs={12} sm={6} ref={targetRef} style={{minHeight: '50vh'}}>
+                    <iframe title='map' style={{height: '100%', width: '100%', border: '0px'}} src={getMapWithSize()}>IFrame troubles!</iframe>
+                </Grid>
                 
             </Grid>  
-                
-                
-                
-            <Grid container item style={{height: '100%'}} xs={12} sm={6} ref={targetRef}>
-                <iframe title='map' style={{height: '100%', width: '100%', border: '0px'}} src={getMapWithSize()}>IFrame troubles!</iframe>
-            </Grid>
+            
         </Grid>
 
     )

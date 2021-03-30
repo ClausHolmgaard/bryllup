@@ -1,6 +1,6 @@
 const titleText = new Map();
-titleText.set('english', 'Welcome to our wedding');
-titleText.set('dansk', 'Velkommen til vores bryllup');
+titleText.set('english', 'Welcome');
+titleText.set('dansk', 'Velkommen');
 
 const bodyText = new Map();
 bodyText.set('english', [

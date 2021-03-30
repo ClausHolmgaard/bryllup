@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-
-const IMAGES_PER_PAGE = 4;
+import { Typography } from '@material-ui/core';
+import { useMediaQuery } from "@material-ui/core";
 
 const carouselStyle = {
     height: '100%',
@@ -13,11 +13,16 @@ const carouselStyle = {
 
 const ImageGallery = ({imageUrl}) => {
     const [imageGroups, setImageGroups] = useState([]);
+    const [imagesPerPage, setImagesPerPage] = useState(2)
+
+    const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down("xs"));
+    //const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     useEffect(() => {
+        setImagesPerPage(isSmallScreen ? 2 : 4);
         getImages();
         //console.log(imageUrls);
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const getImages = () => {
         console.log(`Getting image list from: ${imageUrl}`);
@@ -39,10 +44,10 @@ const ImageGallery = ({imageUrl}) => {
         const images = json['images'];
         //console.log(`number of images: ${images.length}`);
 
-        const numGroups = Math.ceil(images.length / IMAGES_PER_PAGE);
+        const numGroups = Math.ceil(images.length / imagesPerPage);
         //console.log(`Number of groups: ${numGroups}`);
-
-        const imGroups = Array.from({length: numGroups}, (x, i) => getImageGroup(images, IMAGES_PER_PAGE, IMAGES_PER_PAGE*i));
+        console.log(`is small screen: ${isSmallScreen}`);
+        const imGroups = Array.from({length: numGroups}, (x, i) => getImageGroup(images, imagesPerPage, imagesPerPage*i));
         //console.log(imGroups);
         setImageGroups(imGroups);
     }
@@ -57,7 +62,7 @@ const ImageGallery = ({imageUrl}) => {
                 {props.images.map((l, i) => (
                     <Grid item key={i}>
                         <Paper elevation={0}>
-                            <img src={l} alt='' referrerPolicy="no-referrer" style={{maxHeight: '45vh', maxWidth: '20vw'}} />
+                            <img src={l} alt='' referrerPolicy="no-referrer" style={{maxHeight: '45vh', maxWidth: `${100/imagesPerPage - 10}vw`}} />
                         </Paper>
                     </Grid>
                 ))}
@@ -66,16 +71,28 @@ const ImageGallery = ({imageUrl}) => {
     }
 
     return (
-            <Carousel
-                style={carouselStyle}
-                indicators={false}
-                interval={10000}
-                next={ () => { /*increaseOffset()*/ } }
-                prev={ () => {/* Do other stuff */} }>
+            <Grid container item xs={12} direction='row' justify='center' alignItems='stretch'>
+                <Grid item>
+                    <Typography variant='h3'>
+                        <center>
+                            Galleri
+                        </center>
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Carousel
+                        style={carouselStyle}
+                        indicators={false}
+                        interval={10000}
+                        next={ () => { /*increaseOffset()*/ } }
+                        prev={ () => {/* Do other stuff */} }>
 
-                {imageGroups.map((im, i) => <CarouselItem images={im} key={i}/>)}
+                        {imageGroups.map((im, i) => <CarouselItem images={im} key={i}/>)}
 
-            </Carousel>
+                    </Carousel>
+                </Grid>
+            </Grid>
+            
     )
 }
 

@@ -5,6 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import { useMediaQuery } from "@material-ui/core";
 
 import { Context } from '../function/Store';
@@ -13,10 +16,7 @@ import { helloText } from '../Text/IntroText';
 import introImage from '../images/thaoper_main.jpg';
 import topLeftFlower from '../images/flower_left_top.jpg';
 
-const introStyle = {
-    height: '100%',
-    width: '100%',
-};
+const OK_TIMEOUT = 10000;
 
 const imageStyle = {
     maxWidth: '100%',
@@ -28,16 +28,22 @@ const IntroBox = ({mailUrl}) => {
     const [getLanguage, ,] = language;
     const [sendStatus, setSendStatus] = useState(0);
     const [showRsvp, setShowRsvp] = useState(false);
+    const [isParticipating, setIsParticipating] = useState('true');
+    const [lastOk, setLastOk] = useState(0);
+
     const [nameError, setNameError] = useState(false);
-    const [phoneError, setPhoneError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
     const [adultError, setAdultError] = useState(false);
-    const [childrenError, setChildrenError] = useState(false);
+    const [children0to3Error, setChildren0to3Error] = useState(false);
+    const [children3to12Error, setChildren3to12Error] = useState(false);
+    
     const [rsvpInfo, setRsvpInfo] = useState({
         nameText: '',
-        phoneText: '',
+        emailText: '',
         adultText: '',
-        childrenText: '',
-        commentText: ''
+        children0to3Text: '',
+        children3to12Text: '',
+        allergyText: ''
       });
 
     const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down("xs"));
@@ -53,15 +59,23 @@ const IntroBox = ({mailUrl}) => {
     const validateRsvp = () => {
         let error = false;
         if(rsvpInfo['nameText'] === '') {
+            setNameError(true);
             error = true;
         }
-        if(rsvpInfo['phoneText'] === '') {
+        if(rsvpInfo['emailText'] === '') {
+            setEmailError(true);
             error = true;
         }
         if(rsvpInfo['adultText'] === '') {
+            setAdultError(true);
             error = true;
         }
-        if(rsvpInfo['childrenText'] === '') {
+        if(rsvpInfo['children0to3Text'] === '') {
+            setChildren0to3Error(true);
+            error = true;
+        }
+        if(rsvpInfo['children3to12Text'] === '') {
+            setChildren3to12Error(true);
             error = true;
         }
 
@@ -73,15 +87,24 @@ const IntroBox = ({mailUrl}) => {
     }
 
     const okClick = () => {
+
+        if(Date.now() - lastOk < OK_TIMEOUT) {
+            console.log('Ok clicked too often, waiting...');
+            return;
+        }
+        setLastOk(Date.now());
+
         if(validateRsvp()) {
             console.log('Sending mail...');
 
             const payload = {
                 'name': rsvpInfo['nameText'],
-                'phone': rsvpInfo['phoneText'],
+                'participating': isParticipating,
+                'email': rsvpInfo['emailText'],
                 'adults': rsvpInfo['adultText'],
-                'children': rsvpInfo['childrenText'],
-                'comment': rsvpInfo['commentText']
+                'children0to3': rsvpInfo['children0to3Text'],
+                'children3to12': rsvpInfo['children3to12Text'],
+                'allergy': rsvpInfo['allergyText']
             }
 
             fetch(mailUrl, {
@@ -106,14 +129,17 @@ const IntroBox = ({mailUrl}) => {
         if(event.target.id === 'nameText') {
             setNameError(false);
         }
-        if(event.target.id === 'phoneText') {
-            setPhoneError(false);
+        if(event.target.id === 'emailText') {
+            setEmailError(false);
         }
         if(event.target.id === 'adultText') {
             setAdultError(false);
         }
-        if(event.target.id === 'childrenText') {
-            setChildrenError(false);
+        if(event.target.id === 'children0to3Text') {
+            setChildren0to3Error(false);
+        }
+        if(event.target.id === 'children3to12Text') {
+            setChildren3to12Error(false);
         }
     }
 
@@ -136,11 +162,22 @@ const IntroBox = ({mailUrl}) => {
         }
     }
 
+    const handleRadioChange = (event) => {
+        setIsParticipating(event.target.value);
+    }
+
     const getRSVP = () => {
         if(showRsvp) {
             return (
                 <Grid container item direction='column'>
-                    
+                    <Grid item xs={12}>
+                    <RadioGroup value={isParticipating} onChange={handleRadioChange}>
+                        <FormControlLabel value='true' control={<Radio color='primary'/>} label="Deltager" />
+                        <FormControlLabel value='false' control={<Radio color='primary'/>} label="Deltager ikke" />
+                    </RadioGroup>
+                            
+                       
+                    </Grid>
                     <Grid item xs={12}>
                         <TextField
                             style={{width: '100%'}}
@@ -155,39 +192,50 @@ const IntroBox = ({mailUrl}) => {
                         <TextField
                             style={{width: '100%'}}
                             required
-                            id="phoneText"
-                            label="Telefon"
+                            id="emailText"
+                            label="Email"
                             defaultValue=""
-                            error={phoneError}
+                            error={emailError}
                             onChange={handleRsvpChanges}/>
                     </Grid>
 
-                    <Grid container item direction='row'>
-                        <Grid item xs={6}>
-                            <TextField
-                                required
-                                id="adultText"
-                                label="Antal voksne"
-                                defaultValue=""
-                                error={adultError}
-                                onChange={handleRsvpChanges}/>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                required
-                                id="childrenText"
-                                label="Antal børn"
-                                defaultValue=""
-                                error={childrenError}
-                                onChange={handleRsvpChanges}/>
-                        </Grid>
+
+                    <Grid item xs={12}>
+                        <TextField
+                            style={{width: '100%'}}
+                            required
+                            id="adultText"
+                            label="Antal voksne"
+                            defaultValue=""
+                            error={adultError}
+                            onChange={handleRsvpChanges}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            style={{width: '100%'}}
+                            required
+                            id="children0to3Text"
+                            label="Børn under 3 år"
+                            defaultValue=""
+                            error={children0to3Error}
+                            onChange={handleRsvpChanges}/>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            style={{width: '100%'}}
+                            required
+                            id="children3to12Text"
+                            label="Børn far 3 til 12 år"
+                            defaultValue=""
+                            error={children3to12Error}
+                            onChange={handleRsvpChanges}/>
                     </Grid>
                     
                     <Grid item xs={12}>
                     <TextField
                         style={{width: '100%'}}
-                        id="commentText"
-                        label="Kommentar"
+                        id="allergyText"
+                        label="Allergier"
                         multiline
                         rowsMax={4}
                         rows={4}
@@ -208,8 +256,8 @@ const IntroBox = ({mailUrl}) => {
             )
         } else {
             return (
-                <Grid item style={{paddingBottom: 5, paddingTop: 5}}>
-                    <Button variant="contained" color="primary" onClick={() => {setShowRsvp(true)}}>
+                <Grid container item style={{paddingBottom: 5, paddingTop: 8}} justify='center'>
+                    <Button variant="contained" color="primary" size='large' onClick={() => {setShowRsvp(true)}}>
                         RSVP
                     </Button>
                 </Grid>
@@ -241,9 +289,10 @@ const IntroBox = ({mailUrl}) => {
                                 <img src={introImage} style={imageStyle}  alt=''/>
                             </Paper>
                             <Typography variant='h4'>
-                                <center>D. 7. August Kl. 13:00 i Hjørring</center>
+                                <center>7. August Kl. 13:00</center>
+                                <center>Hjørring</center>
                             </Typography>
-                            <Grid item>
+                            <Grid item container xs={8}>
                                 {getRSVP()}
                             </Grid>
                             
@@ -269,10 +318,11 @@ const IntroBox = ({mailUrl}) => {
                                     <center>Per & Thao</center>
                                 </Typography>
                                 <Typography variant='h4'>
-                                    <center>D. 7. August Kl. 13:00 i Hjørring</center>
+                                    <center>7. August Kl. 13:00</center>
+                                    <center>Hjørring</center>
                                 </Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid container item xs={12} sm={8}>
                                 {getRSVP()}
                             </Grid>
                         </Grid>

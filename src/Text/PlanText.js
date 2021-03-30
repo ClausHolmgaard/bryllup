@@ -21,7 +21,7 @@ thirdEntryTitle.set('english', 'Arrival at Vendelbohus');
 thirdEntryTitle.set('dansk', 'Ankomst til Vendelbohus');
 const thirdEntryText = new Map();
 thirdEntryText.set('english', 'Guests arrive until 17:00');
-thirdEntryText.set('dansk', 'Glidende ankomst frem til klokken 17:00');
+thirdEntryText.set('dansk', 'Løbende ankomst frem til klokken 17:00');
 
 const fourthEntryTitle = new Map();
 fourthEntryTitle.set('english', 'Welcome to the wedding party');

@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
@@ -44,7 +45,7 @@ const Wishlist = () => {
 
     const getStyle = () => {
         const style = {
-            backgroundColor: '#e1f1fc',
+            //backgroundColor: '#e1f1fc',
             //minHeight: '30vh',
             //height: fullHeight ? '100%' : '100%'
             height: '100%'
@@ -94,13 +95,15 @@ const Wishlist = () => {
                   direction='column'
                   alignItems='center'
                   justify={getJustify()}>
-                <Grid>
-                    <Typography variant='h2'>
-                        <center>
-                            {titleText.get(getLanguage)}
-                        </center>
-                    </Typography>
-                </Grid>
+                <Box pb={3}>
+                    <Grid>
+                        <Typography variant='h3'>
+                            <center>
+                                {titleText.get(getLanguage)}
+                            </center>
+                        </Typography>
+                    </Grid>
+                </Box>
                 <Grid>
                     {getBottom()}
                 </Grid>            

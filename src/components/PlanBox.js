@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
@@ -56,19 +57,25 @@ const PlanBox = () => {
         <Grid container direction='column' alignItems='center' justify='center'>
             
             <Grid container item xs={12} direction='column' alignItems='center' justify='center'>
-                <Grid item>
-                    <Typography variant='h2'>
-                        <center>
-                            {titleText.get(getLanguage)}
-                        </center>
-                    </Typography>
-                </Grid>
+                <Box pb={5}>
+                    <Grid item>
+                        <Typography variant='h3'>
+                            <center>
+                                {titleText.get(getLanguage)}
+                            </center>
+                        </Typography>
+                    </Grid>
+                </Box>
 
                 <Grid container item xs={12} direction='column' alignItems='center'>
                     {tableEntry('13:00', firstEntryTitle.get(getLanguage), firstEntryText.get(getLanguage))}
+                    <br/>
                     {tableEntry('14:00', secondEntryTtitle.get(getLanguage), secondEntryText.get(getLanguage))}
+                    <br/>
                     {tableEntry('16:00', thirdEntryTitle.get(getLanguage), thirdEntryText.get(getLanguage))}
+                    <br/>
                     {tableEntry('17:00', fourthEntryTitle.get(getLanguage), fourthEntryText.get(getLanguage))}
+                    <br/>
                     {tableEntry('18:00', fifthEntryTitle.get(getLanguage), fifthEntryText.get(getLanguage))}
                 </Grid>
             </Grid>
