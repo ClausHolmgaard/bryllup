@@ -4,10 +4,12 @@ import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
-import { churchText, partyText } from '../Text/MapText';
+import * as LanguageText from '../Text/MapText';
 
 import GreenMapPin from '../images/GreenMapPin.png';
 import BlueMapPin from '../images/BlueMapPin.png';
+import YellowMapPin from '../images/YellowMapPin.png';
+import RedMapPin from '../images/RedMapPin.png';
 
 const MapBox = ({mapUrl}) => {
     const { language } = useContext(Context)
@@ -56,7 +58,7 @@ const MapBox = ({mapUrl}) => {
         return (
             <Grid container item xs={12} sm={4} justify='center' direction='column'>
                 <Grid container item direction='column'>
-                    {getTitleWithImage(churchText.get(getLanguage), BlueMapPin)}
+                    {getTitleWithImage(LanguageText.churchText.get(getLanguage), BlueMapPin)}
                     <Typography variant='subtitle1'>
                         Sankt Maria, martyrernes Dronning
                     </Typography>
@@ -73,7 +75,7 @@ const MapBox = ({mapUrl}) => {
                 </Grid>
                 
                 <Grid item>
-                    {getTitleWithImage(partyText.get(getLanguage), GreenMapPin)}
+                    {getTitleWithImage(LanguageText.partyText.get(getLanguage), GreenMapPin)}
                     <Typography variant='subtitle1'>
                         Vendelbohus
                     </Typography>
@@ -90,11 +92,7 @@ const MapBox = ({mapUrl}) => {
                 </Grid>
 
                 <Grid container item direction='column'>
-                    <Grid item>
-                        <Typography variant='h6'>
-                            Parkering til fest
-                        </Typography>
-                    </Grid>
+                    {getTitleWithImage(LanguageText.parkingText.get(getLanguage), YellowMapPin)}
                     <Grid container item direction='row'>
                         <Grid item>
                             <Typography variant='subtitle1'>
@@ -122,9 +120,7 @@ const MapBox = ({mapUrl}) => {
                 </Grid>
 
                 <Grid item>
-                    <Typography variant='h5'>
-                        Overnatning
-                    </Typography>
+                    {getTitleWithImage('Hotel', RedMapPin)}
                     <Typography variant='subtitle1'>
                         <a href='https://phoenix-hjoerring.dk/'>Hotel Phønix Hjørring</a>
                     </Typography>
@@ -146,7 +142,7 @@ const MapBox = ({mapUrl}) => {
                 <Grid item xs={12}>
                     <Typography variant='h3'>
                         <center>
-                            Lokationer
+                            {LanguageText.locationText.get(getLanguage)}
                         </center>
                     </Typography>
                 </Grid>

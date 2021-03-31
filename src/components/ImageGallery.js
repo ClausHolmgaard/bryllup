@@ -13,13 +13,13 @@ const carouselStyle = {
 
 const ImageGallery = ({imageUrl}) => {
     const [imageGroups, setImageGroups] = useState([]);
-    const [imagesPerPage, setImagesPerPage] = useState(2)
+    const [imagesPerPage, setImagesPerPage] = useState(4)
 
     const isSmallScreen = useMediaQuery(theme => theme.breakpoints.down("xs"));
     //const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     useEffect(() => {
-        setImagesPerPage(isSmallScreen ? 2 : 4);
+        //setImagesPerPage(isSmallScreen ? 2 : 4);
         getImages();
         //console.log(imageUrls);
     }, []) // eslint-disable-line react-hooks/exhaustive-deps

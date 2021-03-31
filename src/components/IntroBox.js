@@ -11,7 +11,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { useMediaQuery } from "@material-ui/core";
 
 import { Context } from '../function/Store';
-import { helloText } from '../Text/IntroText';
+import * as LanguageText from '../Text/IntroText';
 
 import introImage from '../images/thaoper_main.jpg';
 import topLeftFlower from '../images/flower_left_top.jpg';
@@ -89,13 +89,13 @@ const IntroBox = ({mailUrl}) => {
     const okClick = () => {
 
         if(Date.now() - lastOk < OK_TIMEOUT) {
-            console.log('Ok clicked too often, waiting...');
+            //console.log('Ok clicked too often, waiting...');
             return;
         }
         setLastOk(Date.now());
 
         if(validateRsvp()) {
-            console.log('Sending mail...');
+            //console.log('Sending mail...');
 
             const payload = {
                 'name': rsvpInfo['nameText'],
@@ -149,14 +149,13 @@ const IntroBox = ({mailUrl}) => {
         } else if(sendStatus === 200) {
             return(
                 <Grid item>
-                    <center>Svar er modtaget</center>
+                    <center>{LanguageText.replyReceivedText.get(getLanguage)}</center>
                 </Grid>
             )
         } else {
             return(
                 <Grid item>
-                    <center>Problem med afsendelse af svar</center>
-                    <center>Tag venligst konkakt</center>
+                    <center>{LanguageText.replyErrorText.get(getLanguage)}</center>
                 </Grid>
             )
         }
@@ -183,7 +182,7 @@ const IntroBox = ({mailUrl}) => {
                             style={{width: '100%'}}
                             required
                             id="nameText"
-                            label="Navn"
+                            label={LanguageText.nameText.get(getLanguage)}
                             defaultValue=""
                             error={nameError}
                             onChange={handleRsvpChanges}/>
@@ -205,7 +204,7 @@ const IntroBox = ({mailUrl}) => {
                             style={{width: '100%'}}
                             required
                             id="adultText"
-                            label="Antal voksne"
+                            label={LanguageText.numAdultText.get(getLanguage)}
                             defaultValue=""
                             error={adultError}
                             onChange={handleRsvpChanges}/>
@@ -215,7 +214,7 @@ const IntroBox = ({mailUrl}) => {
                             style={{width: '100%'}}
                             required
                             id="children0to3Text"
-                            label="Børn under 3 år"
+                            label={LanguageText.numChildren0to3Text.get(getLanguage)}
                             defaultValue=""
                             error={children0to3Error}
                             onChange={handleRsvpChanges}/>
@@ -225,7 +224,7 @@ const IntroBox = ({mailUrl}) => {
                             style={{width: '100%'}}
                             required
                             id="children3to12Text"
-                            label="Børn far 3 til 12 år"
+                            label={LanguageText.numChildren3to12Text.get(getLanguage)}
                             defaultValue=""
                             error={children3to12Error}
                             onChange={handleRsvpChanges}/>
@@ -235,7 +234,7 @@ const IntroBox = ({mailUrl}) => {
                     <TextField
                         style={{width: '100%'}}
                         id="allergyText"
-                        label="Allergier"
+                        label={LanguageText.allergyText.get(getLanguage)}
                         multiline
                         rowsMax={4}
                         rows={4}
@@ -245,7 +244,7 @@ const IntroBox = ({mailUrl}) => {
                     
                     <Grid container item xs={12} style={{paddingBottom: 5, paddingTop: 5}} justify='space-between'>
                         <Button variant="contained" color="primary" onClick={() => {setShowRsvp(false); setSendStatus(0)}}>
-                            Afbryd
+                            {LanguageText.cancelText.get(getLanguage)}
                         </Button>
                         <Button variant="contained" color="primary" onClick={() => okClick()}>
                             Ok
@@ -258,7 +257,7 @@ const IntroBox = ({mailUrl}) => {
             return (
                 <Grid container item style={{paddingBottom: 5, paddingTop: 8}} justify='center'>
                     <Button variant="contained" color="primary" size='large' onClick={() => {setShowRsvp(true)}}>
-                        RSVP
+                        {LanguageText.rsvpText.get(getLanguage)}
                     </Button>
                 </Grid>
             )
@@ -278,7 +277,7 @@ const IntroBox = ({mailUrl}) => {
                         <Grid container item direction='column' alignItems='center' justify='center'>
 
                             <Typography variant="h3">
-                                <center>{helloText.get(getLanguage)}</center>
+                                <center>{LanguageText.helloText.get(getLanguage)}</center>
                             </Typography>
                             <Typography variant="h4">
                                 <center>Per & Thao</center>
@@ -312,7 +311,7 @@ const IntroBox = ({mailUrl}) => {
                         <Grid container item direction='column' alignItems='center' justify='center'>
                             <Grid>
                                 <Typography variant="h2">
-                                    <center>{helloText.get(getLanguage)}</center>
+                                    <center>{LanguageText.helloText.get(getLanguage)}</center>
                                 </Typography>
                                 <Typography variant="h3">
                                     <center>Per & Thao</center>
