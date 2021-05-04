@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react'
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -168,14 +169,13 @@ const IntroBox = ({mailUrl}) => {
     const getRSVP = () => {
         if(showRsvp) {
             return (
-                <Grid container item direction='column'>
+                <Grid container item direction='column' xs={12} wrap='nowrap'>
                     <Grid item xs={12}>
-                    <RadioGroup value={isParticipating} onChange={handleRadioChange}>
-                        <FormControlLabel value='true' control={<Radio color='primary'/>} label="Deltager" />
-                        <FormControlLabel value='false' control={<Radio color='primary'/>} label="Deltager ikke" />
-                    </RadioGroup>
-                            
-                       
+                        <RadioGroup value={isParticipating} onChange={handleRadioChange}>
+                            <FormControlLabel value='true' control={<Radio color='primary'/>} label="Deltager" />
+                            <FormControlLabel value='false' control={<Radio color='primary'/>} label="Deltager ikke" />
+                        </RadioGroup>
+
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
@@ -255,10 +255,12 @@ const IntroBox = ({mailUrl}) => {
             )
         } else {
             return (
-                <Grid container item style={{paddingBottom: 5, paddingTop: 8}} justify='center'>
-                    <Button variant="contained" color="primary" size='large' onClick={() => {setShowRsvp(true)}}>
-                        {LanguageText.rsvpText.get(getLanguage)}
-                    </Button>
+                <Grid container item xs={12} direction='column'>
+                    <center>
+                        <Button variant="contained" color="primary" size='large' onClick={() => {setShowRsvp(true)}}>
+                            {LanguageText.rsvpText.get(getLanguage)}
+                        </Button>
+                    </center>
                 </Grid>
             )
         }
@@ -302,14 +304,14 @@ const IntroBox = ({mailUrl}) => {
             )
         } else {
             return (
-                <Grid container item style={getMainStyle()} direction='row'>
-                    <Grid container item xs={12} sm={6} direction='column'>
-                        <Grid item>
-                            <img src={topLeftFlower} style={{maxWidth: '50vw', maxHeight: '50vh'}} alt=''/>
+                <Grid container item xs={12} style={getMainStyle()} direction='row'>
+                    <Grid container item xs={12} sm={6} direction='column' wrap='nowrap' justify='flex-start'>
+                        <Grid item xs={12}>
+                            <img src={topLeftFlower} style={{height: '50vh'}} alt=''/>
                         </Grid>
 
-                        <Grid container item direction='column' alignItems='center' justify='center'>
-                            <Grid>
+                        <Grid container item xs={12} direction='column' alignItems='center' justify='center' wrap='nowrap'>
+                            <Grid item>
                                 <Typography variant="h2">
                                     <center>{LanguageText.helloText.get(getLanguage)}</center>
                                 </Typography>
@@ -321,15 +323,17 @@ const IntroBox = ({mailUrl}) => {
                                     <center>Hjørring</center>
                                 </Typography>
                             </Grid>
-                            <Grid container item xs={12} sm={8}>
+                            <Grid container item xs={8}>
                                 {getRSVP()}
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid container item xs={12} sm={6} alignItems='center'>
-                        <Paper style={imageStyle}>
-                            <img src={introImage} style={imageStyle}  alt=''/>
-                        </Paper>
+                    <Grid container item xs={12} sm={6} direction='column' alignItems='flex-start' justify='flex-start'>
+                        <Box pt={5}>
+                            <Paper style={imageStyle}>
+                                <img src={introImage} style={imageStyle}  alt=''/>
+                            </Paper>
+                        </Box>
                     </Grid>
                 </Grid>
             )
@@ -337,9 +341,9 @@ const IntroBox = ({mailUrl}) => {
     }
 
     return(
-        <div>
+        <Grid container item>
             {getPictureAndText()}
-        </div>
+        </Grid>
         
     )
 }

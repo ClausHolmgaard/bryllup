@@ -29,12 +29,9 @@ const WelcomeBox = () => {
                     </center>
                 </Grid>
             </Grid>
-
-            <br />
-            <br />
             
             <Grid container item xs={12} direction='column' alignItems='center' justify='center'>
-                <Box pb={2}>
+                <Box pb={2} pt={'2em'}>
                     <Grid item>
                         <Typography variant='h4'>
                             <center>

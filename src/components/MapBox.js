@@ -157,7 +157,15 @@ const MapBox = ({mapUrl}) => {
                 
 
                 <Grid container item xs={12} sm={6} ref={targetRef} style={{minHeight: '50vh'}}>
-                    <iframe title='map' style={{height: '100%', width: '100%', border: '0px'}} src={getMapWithSize()}>IFrame troubles!</iframe>
+                    <iframe
+                        title='map'
+                        style={{height: '100%',
+                                width: '100%',
+                                border: '0px'}}
+                        scrolling='no'
+                        src={getMapWithSize()}>
+                            IFrame troubles!
+                    </iframe>
                 </Grid>
                 
             </Grid>  
