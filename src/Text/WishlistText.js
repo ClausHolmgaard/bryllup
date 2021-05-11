@@ -10,4 +10,8 @@ const moreText = new Map();
 moreText.set('english', 'Click for more!');
 moreText.set('dansk', 'Tryk for mere!');
 
-export {titleText, contactText, moreText};
+const lessText = new Map();
+lessText.set('english', 'Click for less');
+lessText.set('dansk', 'Klik for mindre');
+
+export {titleText, contactText, moreText, lessText};

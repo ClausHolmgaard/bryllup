@@ -250,6 +250,11 @@ const IntroBox = ({mailUrl}) => {
                             Ok
                         </Button>
                     </Grid>
+                    <Grid container items xs={12} justify='center'>
+                        <div>
+                            {LanguageText.fallbackText.get(getLanguage)} <a href = 'mailto: rsvp@buiholmgaard.dk'>Send Email</a>
+                        </div>
+                    </Grid>
                     {getResultView()}
                 </Grid>
             )

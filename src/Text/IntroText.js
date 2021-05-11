@@ -36,20 +36,24 @@ numChildren3to12Text.set('english', 'Children ages 3 to 12');
 numChildren3to12Text.set('dansk', 'Børn fra 3 til 12');
 
 const allergyText = new Map();
-allergyText.set('english', 'Allergies');
-allergyText.set('dansk', 'Allergier');
+allergyText.set('english', 'Allergies or other dietary restrictions');
+allergyText.set('dansk', 'Allergier eller andre kost begrænsninger');
 
 const replyReceivedText = new Map();
 replyReceivedText.set('english', 'Reply Received');
 replyReceivedText.set('dansk', 'Svar modtaget');
 
 const replyErrorText = new Map();
-replyErrorText.set('english', 'Error sending reply. Please contact arrangers.');
-replyErrorText.set('dansk', 'Problem ved afsendelse af svar. Tag venligst kontakt.');
+replyErrorText.set('english', 'Error sending reply. Please contact rsvp@buiholmgaard.dk.');
+replyErrorText.set('dansk', 'Problem ved afsendelse af svar. Tag kontakt venligst rsvp@buiholmgaard.dk.');
 
 const cancelText = new Map();
 cancelText.set('english', 'Cancel');
 cancelText.set('dansk', 'Afbryd');
+
+const fallbackText = new Map();
+fallbackText.set('english', 'For any further information: ');
+fallbackText.set('dansk', 'For yderligere information: ');
 
 export {helloText,
         rsvpText,
@@ -62,4 +66,5 @@ export {helloText,
         allergyText,
         replyReceivedText,
         replyErrorText,
-        cancelText};
+        cancelText,
+        fallbackText};

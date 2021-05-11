@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
-import {titleText, contactText, moreText} from '../Text/WishlistText';
+import {titleText, contactText, moreText, lessText} from '../Text/WishlistText';
 
 const listOfWishes = new Map();
 listOfWishes.set('english', [
@@ -69,19 +69,23 @@ const Wishlist = () => {
 
     const getBottom = () => {
         if(fullHeight) {
-            return getWishlist();
+            return (
+                <div>
+                    {getWishlist()}
+                    <br/>
+                    <center>
+                        <b>{lessText.get(getLanguage)}</b>
+                    </center>
+                </div>
+            )
         } else {
             return (
-            <div style={{width: '100%'}}>
-                <center>{contactText.get(getLanguage)}</center>
-                <center><a onClick={(e) => e.stopPropagation()} href = 'mailto: gaver@buiholmgaard.dk'>Send Email</a></center>
-                <br />
-                <br />
-                <center>
-                    <b>{moreText.get(getLanguage)}</b>
-                </center>     
-                <br />
-            </div>
+                <div style={{width: '100%'}}>
+                    <center>
+                        <b>{moreText.get(getLanguage)}</b>
+                    </center>     
+                    <br />
+                </div>
             )
         }
     }
@@ -100,9 +104,9 @@ const Wishlist = () => {
 
     const getWishlist = () => {
         return (
-        <List onClick={(e) => e.stopPropagation()} style={{maxHeight: '100%', overflow:'hidden'}}>
-            {listOfWishes.get(getLanguage).map((w, i) => <ListItemText key={i}>{getTextWithLink(w)}</ListItemText>)}
-        </List>
+            <List onClick={(e) => e.stopPropagation()} style={{maxHeight: '100%', overflow:'hidden'}}>
+                {listOfWishes.get(getLanguage).map((w, i) => <ListItemText key={i}>{getTextWithLink(w)}</ListItemText>)}
+            </List>
         )
     }
 
@@ -124,8 +128,12 @@ const Wishlist = () => {
                     </Grid>
                 </Box>
                 <Grid>
+                    <center>{contactText.get(getLanguage)}</center>
+                    <center><a onClick={(e) => e.stopPropagation()} href = 'mailto: gaver@buiholmgaard.dk'>Send Email</a></center>
+                    <br/>
+                    <br/>
                     {getBottom()}
-                </Grid>            
+                </Grid>
             </Grid>
     )
 }

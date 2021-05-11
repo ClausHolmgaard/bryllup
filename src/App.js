@@ -78,7 +78,7 @@ function App() {
                     <Grid item xs={12}>
                         <Wishlist />
                     </Grid>
-                    <Box pt={10} pb={8}>
+                    <Box pt={2} pb={8}>
                         {getSeperator()}
                     </Box>
                     <Grid item style={{minHeight: '50vh'}} xs={12}>
