@@ -66,7 +66,7 @@ function App() {
                     <Grid container item xs={12}>
                         <PlanBox />
                     </Grid>
-                    <Box pt={10} pb={8}>
+                    <Box pt={6} pb={8}>
                         {getSeperator()}
                     </Box>
                     <Grid container item style={{maxHeight: '50vh'}} xs={12} zeroMinWidth>

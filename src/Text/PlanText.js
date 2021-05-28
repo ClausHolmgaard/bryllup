@@ -37,6 +37,22 @@ const fifthEntryText = new Map();
 fifthEntryText.set('english', 'By Chef Thomas Topholt');
 fifthEntryText.set('dansk', 'Ved kok Thomas Topholt');
 
+const toastmasterText1 = new Map();
+toastmasterText1.set('english', 'We are happy that Tien have agreed to be the toastmaster at our wedding');
+toastmasterText1.set('dansk', 'Til vores bryllup er vi glade for at Tien har sagt ja til at være vores toastmaster');
+
+const toastmasterText2 = new Map();
+toastmasterText2.set('english', 'If you have speeches etc. he can be contacted here:');
+toastmasterText2.set('dansk', 'Hvis i har taler eller lignende kan han kontaktes her:');
+
+const partySongs = new Map();
+partySongs.set('english', 'We would like to reject self-written party songs');
+partySongs.set('dansk', 'Vi frabeder os festsange ved brylluppet');
+
+const toastmasterEmail = new Map();
+toastmasterEmail.set('english', 'Contact toastmaster');
+toastmasterEmail.set('dansk', 'Kontakt toastmaster');
+
 export {titleText,
         firstEntryTitle,
         firstEntryText,
@@ -47,4 +63,8 @@ export {titleText,
         fourthEntryTitle,
         fourthEntryText,
         fifthEntryTitle,
-        fifthEntryText};
+        fifthEntryText,
+        toastmasterText1,
+        toastmasterText2,
+        partySongs,
+        toastmasterEmail};

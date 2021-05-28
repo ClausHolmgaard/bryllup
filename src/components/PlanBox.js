@@ -4,18 +4,7 @@ import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
 import { Context } from '../function/Store';
-import {
-    titleText,
-    firstEntryTitle,
-    firstEntryText,
-    secondEntryTtitle,
-    secondEntryText,
-    thirdEntryTitle,
-    thirdEntryText,
-    fourthEntryTitle,
-    fourthEntryText,
-    fifthEntryTitle,
-    fifthEntryText} from '../Text/PlanText';
+import * as languageText from '../Text/PlanText';
 
 const PlanBox = () => {
     const { language } = useContext(Context)
@@ -62,6 +51,25 @@ const PlanBox = () => {
         )
     }
 
+    const toastmasterInfo = () => {
+        return(
+            <Grid item xs={12} direction='column' alignItems='center' justify='center'>
+                <Box pt={5}>
+                    <center>{languageText.toastmasterText1.get(getLanguage)}</center>
+                </Box>
+                <Box>
+                    <center>{languageText.toastmasterText2.get(getLanguage)}</center>
+                </Box>
+                <Box>
+                    <center><a href = 'mailto: taler@buiholmgaard.dk'>{languageText.toastmasterEmail.get(getLanguage)}</a></center>
+                </Box>
+                <Box pt={5}>
+                    <center>{languageText.partySongs.get(getLanguage)}</center>
+                </Box>
+            </Grid>
+        )
+    }
+
     return (
         <Grid container direction='column' alignItems='center' justify='center'>
             
@@ -70,21 +78,23 @@ const PlanBox = () => {
                     <Grid item>
                         <Typography variant='h3'>
                             <center>
-                                {titleText.get(getLanguage)}
+                                {languageText.titleText.get(getLanguage)}
                             </center>
                         </Typography>
                     </Grid>
                 </Box>
 
                 <Grid container item xs={12} direction='column' alignItems='stretch'>
-                    {tableEntry('13:00', firstEntryTitle.get(getLanguage), firstEntryText.get(getLanguage))}
-                    {tableEntry('14:00', secondEntryTtitle.get(getLanguage), secondEntryText.get(getLanguage))}
-                    {tableEntry('16:00', thirdEntryTitle.get(getLanguage), thirdEntryText.get(getLanguage))}
-                    {tableEntry('17:00', fourthEntryTitle.get(getLanguage), fourthEntryText.get(getLanguage))}
-                    {tableEntry('18:00', fifthEntryTitle.get(getLanguage), fifthEntryText.get(getLanguage))}
+                    {tableEntry('13:00', languageText.firstEntryTitle.get(getLanguage), languageText.firstEntryText.get(getLanguage))}
+                    {tableEntry('14:00', languageText.secondEntryTtitle.get(getLanguage), languageText.secondEntryText.get(getLanguage))}
+                    {tableEntry('16:00', languageText.thirdEntryTitle.get(getLanguage), languageText.thirdEntryText.get(getLanguage))}
+                    {tableEntry('17:00', languageText.fourthEntryTitle.get(getLanguage), languageText.fourthEntryText.get(getLanguage))}
+                    {tableEntry('18:00', languageText.fifthEntryTitle.get(getLanguage), languageText.fifthEntryText.get(getLanguage))}
                 </Grid>
             </Grid>
             
+            
+            {toastmasterInfo()}
             
 
             
