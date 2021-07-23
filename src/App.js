@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import StoreProvider from './function/Store';
 import IntroBox from './components/IntroBox';
 import NavBar from './components/NavBar';
+import BottomBar from './components/BottomBar';
 import ImageGallery from './components/ImageGallery';
 import MapBox from './components/MapBox';
 import Wishlist from './components/Wishlist';
@@ -85,6 +86,7 @@ function App() {
                         <MapBox mapUrl={mapUrl} />
                     </Grid>
                 </Grid>
+                <BottomBar />
             </ThemeProvider>
         </StoreProvider>
     );

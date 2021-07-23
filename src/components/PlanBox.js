@@ -53,7 +53,7 @@ const PlanBox = () => {
 
     const toastmasterInfo = () => {
         return(
-            <Grid item xs={12} direction='column' alignItems='center' justify='center'>
+            <Grid item xs={12}>
                 <Box pt={5}>
                     <center>{languageText.toastmasterText1.get(getLanguage)}</center>
                 </Box>
@@ -71,7 +71,7 @@ const PlanBox = () => {
     }
 
     return (
-        <Grid container direction='column' alignItems='center' justify='center'>
+        <Grid container alignItems='center' justify='center'>
             
             <Grid container item xs={12} direction='column' alignItems='center' justify='center'>
                 <Box pb={5}>
